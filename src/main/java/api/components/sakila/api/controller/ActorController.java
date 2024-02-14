@@ -36,7 +36,6 @@ public class ActorController {
             Actor savedActor = actorService.addActor(newActor);
             return new ResponseEntity<>(savedActor, HttpStatus.CREATED);
         } catch (Exception e) {
-            // Log the exception
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -47,7 +46,6 @@ public class ActorController {
             actorService.deleteActor(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            // Log the exception
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
