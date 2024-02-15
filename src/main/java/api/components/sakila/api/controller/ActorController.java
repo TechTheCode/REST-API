@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.ResourceAccessException;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/home/actor")
 public class ActorController {
@@ -48,5 +50,11 @@ public class ActorController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/search/{name}")
+    public ResponseEntity<List<Actor>> searchActors(@PathVariable String name) {
+        List<Actor> actors = actorService.searchActors(name);
+        return new ResponseEntity<>(actors, HttpStatus.OK);
     }
 }

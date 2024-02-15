@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 
+import java.util.List;
+
 @Service
 public class ActorService {
 
@@ -27,5 +29,9 @@ public class ActorService {
 
     public void deleteActor(int id) {
         actorRepository.deleteById(id);
+    }
+
+    public List<Actor> searchActors(String name) {
+        return actorRepository.searchByFirstNameOrLastName(name);
     }
 }

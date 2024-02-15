@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+
 import jakarta.persistence.*;
 @Entity
 @Table(name = "film")
@@ -24,7 +25,7 @@ public class Film {
     private int releaseYear;
 
     @Column(name = "language_id", insertable = false, updatable = false)
-    private byte languageId;
+    private Byte languageId;
 
     @Column(name = "rental_duration")
     private int rentalDuration;
@@ -40,6 +41,9 @@ public class Film {
 
     @Column(name = "rating")
     private String rating;
+
+    @Column(name = "last_update")
+    private Date lastUpdate;
 
     @ManyToOne
     @JoinColumn(name = "language_id", referencedColumnName = "language_id")
@@ -120,6 +124,10 @@ public class Film {
         return releaseYear;
     }
 
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
     public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
@@ -178,5 +186,9 @@ public class Film {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 }

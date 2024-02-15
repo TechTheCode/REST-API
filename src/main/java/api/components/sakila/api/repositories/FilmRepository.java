@@ -9,4 +9,7 @@ import java.util.List;
 public interface FilmRepository extends JpaRepository<Film,Integer> {
     @Query("SELECT f FROM Film f JOIN f.categories c WHERE c.categoryId = :categoryId")
     List<Film> findFilmsByCategoryId(Long categoryId);
+
+    @Query("SELECT f FROM Film f WHERE f.title LIKE %:title%")
+    List<Film> searchByTitle(String title);
 }
