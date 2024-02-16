@@ -6,6 +6,14 @@ import java.util.Set;
 
 
 import jakarta.persistence.*;
+
+/**
+ * Represents a film in the system.
+ * Maps to the 'film' table in the database.
+ * @author Kevin Pham
+ * @since JDK 21.0.2
+ * @version Feb 2024
+ */
 @Entity
 @Table(name = "film")
 public class Film {
@@ -49,7 +57,10 @@ public class Film {
     @JoinColumn(name = "language_id", referencedColumnName = "language_id")
     private Language language;
 
-
+    /**
+     * Language of the film.
+     * Defined as a many-to-one relationship with the 'Language' entity.
+     */
     @ManyToMany
     @JoinTable(
             name = "film_actor",
@@ -58,6 +69,10 @@ public class Film {
     )
     private Set<Actor> actors = new HashSet<>();
 
+    /**
+     * A set of actors that have roles in the film.
+     * Defined as a many-to-many relationship with the 'Actor' entity.
+     */
     @ManyToMany
     @JoinTable(
             name = "film_category",

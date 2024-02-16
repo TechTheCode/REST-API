@@ -6,9 +6,15 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/** A entity class for Actor.
+ * @author Kevin Pham
+ * @since JDK 21.0.2
+ * @version Feb 2024
+ */
 @Entity
 @Table(name="actor")
 public class Actor {
+
     @Id
     @Column(name="actor_id",unique=true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +26,14 @@ public class Actor {
     @Column(name="last_name")
     private String lastName;
 
+    /**
+     * Set of films associated with the actor.
+     * This field is ignored in JSON serialization.
+     */
     @ManyToMany(mappedBy = "actors")
     @JsonIgnore
     private Set<Film> films = new HashSet<>();
 
-    // Getter and setter for films
     public Set<Film> getFilms() {
         return films;
     }
